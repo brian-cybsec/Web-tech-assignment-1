@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grams to kilograms converter</title>
+  <style>
+    body {
+      font-family:'Franklin Gothic Medium', 'Arial Narrow';
+      background: #8b9196;
+      display: flex;
+      justify-content: center;
+      padding-top: 60px;
+    }
+    .box{
+      background: white;
+      padding:30px;
+      border-radius: 12px;
+      text-align: center;
+      width: 360px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+    #guess-value{
+      padding:12px;
+      width: 100%;
+      font-size: 19px;
+      text-align: center;
+      border: 2px solid #c3ced8;
+      border-radius: 8px;
+      outline: none;
+    }
+    #guess-value:focus{
+      border-color: #2a7de1;
+    }
+    #guess-btn{
+      margin-top: 12px;
+      padding: 12px;
+      width: 50%;
+      font-size: 16px;
+      color:white;
+      background: #2a7de1;
+      border:none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    #guess-btn:hover{
+      background: #1c63bb;
+    }
+    #message{
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Number Guessing game</h2>
+    <input type="number" placeholder="Enter a Guess" id="guess-value">
+    <button  id="guess-btn">Submit</button>
+    <div id="message"></div>
+  </div>
+  <script>
+    let secret = Math.floor(Math.random() * 20) + 1;
+let attempts = 0;
+
+const input = document.getElementById("guess-value");
+const message = document.getElementById("message");
+const button = document.getElementById("guess-btn");
+
+button.onclick = function () {
+  const guess = parseInt(input.value);
+  if (isNaN(guess) || guess < 1 || guess > 20) {
+    message.textContent = "Enter a number between 1 and 20.";
+    return;
+  }
+  attempts++;
+  if (guess === secret) {
+    message.textContent = `Correct! It was ${secret}. You took ${attempts} attempts.`;
+    secret = Math.floor(Math.random() * 20) + 1;
+    attempts = 0;
+  } else if (guess < secret) {
+    message.textContent = "Too low. Try higher.";
+  } else {
+    message.textContent = "Too high. Try lower.";
+  }
+  input.value = "";
+  input.focus();
+};
+  </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grams to kilograms converter</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #8b9196;
+      display: flex;
+      justify-content: center;
+      padding-top: 60px;
+    }
+    .box{
+      background: white;
+      padding:30px;
+      border-radius: 12px;
+      text-align: center;
+      width: 360px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+    #mass-value{
+      padding:12px;
+      width: 100%;
+      font-size: 19px;
+      text-align: center;
+      border: 2px solid #c3ced8;
+      border-radius: 8px;
+      outline: none;
+    }
+    #mass-value:focus{
+      border-color: #2a7de1;
+    }
+    #submit-btn{
+      margin-top: 12px;
+      padding: 12px;
+      width: 50%;
+      font-size: 16px;
+      color:white;
+      background: #2a7de1;
+      border:none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    #submit-btn:hover{
+      background: #1c63bb;
+    }
+    #answer{
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Grams to kilograms</h2>
+    <input type="number" placeholder="Enter a mass" id="mass-value">
+    <button  id="submit-btn">Submit</button>
+    <div id="answer"></div>
+  </div>
+  <script>
+    document.getElementById("submit-btn").onclick= function()
+    {
+      const x = parseFloat(document.getElementById("mass-value").value);
+      if(isNaN(x)){
+        document.getElementById("answer").textContent="Enter a valid Number";
+      }
+      const y = x/1000;
+      document.getElementById("answer").textContent=`${x} g = ${y} kg `;
+    }
+  </script>
+</body>
+</html>
